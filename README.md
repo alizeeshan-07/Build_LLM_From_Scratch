@@ -86,6 +86,19 @@ Calculate base raised to the power of exponent, with optional modulo operation.
 
 ---
 
+### 📄 test3.py
+This module contains a test function to check if given complex numbers have an imaginary part.
+
+#### Functions:
+
+**`test_imaginary_numbers() -> Any`**
+
+No description available
+
+*Returns:* `Any` - No return description
+
+---
+
 ## Notes
 
 - This documentation is automatically generated from Python docstrings
