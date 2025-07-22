@@ -1,67 +1,140 @@
-# Project Name
+# 🤖 Build Large Language Model from Scratch
 
-## Overview
-This project contains Python modules with automatically generated documentation.
+A comprehensive implementation following the book's methodology, with clear chapter-by-chapter progression.
 
-## File Summaries
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-### 📄 example.py
-This module provides mathematical utility functions for basic arithmetic operations.
-It includes functions for addition, multiplication, and advanced calculations with proper type hints.
+## 📚 About This Repository
 
-#### Functions:
+This repository contains a complete implementation of a Large Language Model (LLM) built from scratch, following best practices for educational purposes. Each chapter builds upon the previous one, creating a fully functional GPT-style model.
 
-**`add_numbers(a: int, b: int) -> int`**
+## 🎯 Learning Path
 
-Add two integers and return the sum.
+This repository is organized into progressive modules. Here's the recommended learning sequence:
 
-*Parameters:*
-- **a** (`int`): The first number to add
-- **b** (`int`): The second number to add
+1. **Module 01: Tokenization** (`src/modules/01_tokenization/`)
+2. **Module 02: Embeddings** (`src/modules/02_embeddings/`)
+3. **Module 03: Attention** (`src/modules/03_attention/`)
+4. **Module 04: Transformer Blocks** (`src/modules/04_transformer_blocks/`)
+5. **Module 05: Gpt Model** (`src/modules/05_gpt_model/`)
+6. **Module 06: Training** (`src/modules/06_training/`)
+7. **Module 07: Inference** (`src/modules/07_inference/`)
+8. **Module 08: Fine Tuning** (`src/modules/08_fine_tuning/`)
 
-*Returns:* `int` - The sum of a and b as an integer
+## 🚀 Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/alizeeshan-07/Build_LLM_From_Scratch.git
+cd Build_LLM_From_Scratch
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run a quick demo
+python examples/quick_start.py
+```
+
+## 📖 Module Details
+
+## Module 01: Tokenization
+
+📁 **Location**: `src/modules/01_tokenization/`
+
+## Module 02: Embeddings
+
+📁 **Location**: `src/modules/02_embeddings/`
+
+## Module 03: Attention
+
+📁 **Location**: `src/modules/03_attention/`
+
+## Module 04: Transformer Blocks
+
+📁 **Location**: `src/modules/04_transformer_blocks/`
+
+## Module 05: Gpt Model
+
+📁 **Location**: `src/modules/05_gpt_model/`
+
+## Module 06: Training
+
+📁 **Location**: `src/modules/06_training/`
+
+## Module 07: Inference
+
+📁 **Location**: `src/modules/07_inference/`
+
+## Module 08: Fine Tuning
+
+📁 **Location**: `src/modules/08_fine_tuning/`
+
+## 🛠️ Utilities
+
+Common utilities used across all chapters:
+
+### `visualization.py`
+Visualization utilities for plotting attention weights, training curves, etc.
+
+- `plot_attention_weights()`: Plot attention weights as a heatmap
+- `plot_training_curves()`: Plot training and validation loss curves
+- `plot_token_embeddings()`: Plot token embeddings in 2D using dimensionality reduction
+
+### `cli.py`
+Command-line interface for the Build LLM project.
+Provides easy access to common operations.
+
+- `train_model()`: Train a model with specified configuration
+- `generate_text()`: Generate text using a trained model
+- `tokenize_text()`: Tokenize input text and display results
+- `main()`: Main CLI entry point
+
+### `data_utils.py`
+Data processing utilities for loading and preprocessing text data.
+
+- `load_text_data()`: Load text data from a file
+- `preprocess_text()`: Basic text preprocessing
+- `create_vocab()`: Create vocabulary from list of texts
+
+### `metrics.py`
+Evaluation metrics for language models.
+
+- `calculate_perplexity()`: Calculate perplexity from cross-entropy loss
+- `calculate_accuracy()`: Calculate token-level accuracy
+- `evaluate_model()`: Evaluate model on a dataset
+
+### `init.py`
+Utility functions and helpers for the Build LLM project.
+
+## 📄 Project Structure
+
+```
+src/
+├── modules/
+│   ├── 01_tokenization/           # Text tokenization methods
+│   ├── 02_embeddings/             # Word and positional embeddings
+│   ├── 03_attention/              # Attention mechanisms
+│   ├── 04_transformer_blocks/     # Transformer architecture
+│   ├── 05_gpt_model/              # Complete GPT model
+│   ├── 06_training/               # Training procedures
+│   ├── 07_inference/              # Text generation
+│   └── 08_fine_tuning/            # Model fine-tuning
+└── utils/                         # Common utilities
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. Make sure to follow the existing code structure and add appropriate documentation.
+
+## 📧 Contact
+
+Feel free to reach out if you have questions about the implementation or want to discuss LLM concepts!
 
 ---
-
-**`multiply_numbers(x: float, y: float, precision: int = 2) -> float`**
-
-Multiply two numbers with optional precision control.
-
-*Parameters:*
-- **x** (`float`): First number to multiply
-- **y** (`float`): Second number to multiply
-- **precision** (`int` (default: 2)): Number of decimal places to round to
-
-*Returns:* `float` - The product of x and y, rounded to specified precision
-
----
-
-**`calculate_average(numbers: List[Union[(int, float)]]) -> Optional[float]`**
-
-Calculate the average of a list of numbers.
-
-*Parameters:*
-- **numbers** (`List[Union[(int, float)]]`): List of integers or floats to average
-
-*Returns:* `Optional[float]` - The arithmetic mean of the numbers, or None if list is empty
-
----
-
-**`power_calculation(base: int, exponent: int = 2, modulo: Optional[int] = None) -> int`**
-
-Calculate base raised to the power of exponent, with optional modulo operation.
-
-*Parameters:*
-- **base** (`int`): The base number
-- **exponent** (`int` (default: 2)): The power to raise the base to
-- **modulo** (`Optional[int]` (default: None)): Optional modulo value for the result
-
-*Returns:* `int` - Result of base^exponent, optionally mod modulo
-
----
-
-## Notes
-
-- This documentation is automatically generated from Python docstrings
-- Function signatures include type hints when available
-- Parameter and return descriptions are extracted from docstrings
+*📝 This README is automatically updated when Python files are modified.*
