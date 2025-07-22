@@ -227,11 +227,12 @@ def generate_module_documentation(module_path: str, module_info: Dict) -> str:
     
     # Analyze Python files in the module
     python_files = []
-    for file in os.listdir(module_path):
-        if file.endswith('.py') and file != '__init__.py':
-            file_path = os.path.join(module_path, file)
-            file_analysis = analyze_python_file(file_path)
-            python_files.append((file, file_analysis))
+    if os.path.exists(module_path):
+        for file in os.listdir(module_path):
+            if file.endswith('.py') and file != '__init__.py':
+                file_path = os.path.join(module_path, file)
+                file_analysis = analyze_python_file(file_path)
+                python_files.append((file, file_analysis))
     
     if python_files:
         content.append("### 📋 Files in this Module:\n\n")
@@ -259,22 +260,56 @@ def generate_module_documentation(module_path: str, module_info: Dict) -> str:
                 content.append("\n")
             
             content.append("---\n\n")
+    else:
+        content.append("*Module files will appear here as you implement them.*\n\n")
     
+    return ''.join(content)
+
+def add_documentation_links():
+    """Add links to documentation files."""
+    content = [
+        "## 📚 Documentation & Learning Resources\n\n",
+        "This repository includes comprehensive documentation to support your learning journey:\n\n",
+        "### 📖 **Core Documentation**\n",
+        "- **[🎯 Learning Path](docs/learning_path.md)** - Step-by-step guide through all modules with time estimates, prerequisites, and study tips\n",
+        "- **[📚 Resources](docs/resources.md)** - Curated collection of papers, books, videos, and online resources\n", 
+        "- **[🔧 Troubleshooting](docs/troubleshooting.md)** - Solutions to common implementation, training, and setup issues\n\n",
+        "### 🎯 **Module-Specific Guides**\n",
+        "Each module includes its own README with:\n",
+        "- Learning objectives and key concepts\n",
+        "- Implementation details and explanations\n",
+        "- Usage examples and best practices\n",
+        "- Common issues and debugging tips\n\n"
+    ]
     return ''.join(content)
 
 def update_readme():
     """Generate comprehensive README for LLM project."""
     readme_content = [
         "# 🤖 Build Large Language Model from Scratch\n\n",
-        "A comprehensive implementation following the book's methodology, with clear chapter-by-chapter progression.\n\n",
+        "A comprehensive implementation following a modular, educational approach to understanding and building Large Language Models (LLMs) from the ground up.\n\n",
         "[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)\n",
+        "[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)\n",
         "[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)\n",
-        "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)\n\n",
-        "## 📚 About This Repository\n\n",
-        "This repository contains a complete implementation of a Large Language Model (LLM) built from scratch, "
-        "following best practices for educational purposes. Each chapter builds upon the previous one, "
-        "creating a fully functional GPT-style model.\n\n"
+        "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)\n",
+        "[![Auto-Update Docs](https://img.shields.io/badge/docs-auto--updated-green.svg)](.github/workflows/update-readme.yml)\n\n",
+        "## 🎯 About This Project\n\n",
+        "This repository provides a **complete, educational implementation** of Large Language Models, designed for:\n\n",
+        "- 🎓 **Students and researchers** learning about transformer architectures\n",
+        "- 💻 **Developers** wanting to understand LLMs from first principles  \n",
+        "- 🔬 **Practitioners** looking for clean, well-documented reference implementations\n",
+        "- 🤝 **Contributors** interested in advancing open-source ML education\n\n",
+        "### ✨ **Key Features**\n",
+        "- **Progressive complexity**: Each module builds naturally on previous concepts\n",
+        "- **Production-quality code**: Clean, typed, tested, and documented\n",
+        "- **Educational focus**: Extensive explanations, visualizations, and examples\n",
+        "- **Auto-updating documentation**: README stays synchronized with code changes\n",
+        "- **Interactive learning**: Jupyter notebooks for experimentation\n",
+        "- **Comprehensive testing**: Unit tests ensure code correctness\n\n"
     ]
+    
+    # Add documentation links
+    readme_content.append(add_documentation_links())
     
     # Add learning path
     readme_content.append(generate_learning_path())
@@ -282,39 +317,51 @@ def update_readme():
     # Quick start section
     readme_content.extend([
         "## 🚀 Quick Start\n\n",
+        "### **Prerequisites**\n",
+        "- Python 3.8+ installed\n",
+        "- Basic familiarity with PyTorch and neural networks\n",
+        "- 8GB+ RAM recommended (16GB+ for larger experiments)\n\n",
+        "### **Installation**\n",
         "```bash\n",
         "# Clone the repository\n",
         "git clone https://github.com/alizeeshan-07/Build_LLM_From_Scratch.git\n",
         "cd Build_LLM_From_Scratch\n\n",
-        "# Create virtual environment\n",
+        "# Create and activate virtual environment\n",
         "python -m venv venv\n",
         "source venv/bin/activate  # On Windows: venv\\Scripts\\activate\n\n",
-        "# Install dependencies\n",
-        "pip install -r requirements.txt\n\n",
-        "# Run a quick demo\n",
+        "# Install the project in development mode\n",
+        "pip install -e .\n\n",
+        "# Verify installation\n",
         "python examples/quick_start.py\n",
-        "```\n\n"
+        "```\n\n",
+        "### **First Steps**\n",
+        "1. 📖 **Read the [Learning Path](docs/learning_path.md)** to understand the progression\n",
+        "2. 🏃‍♂️ **Start with Module 1**: `src/modules/01_tokenization/`\n",
+        "3. 📚 **Follow along** with the module README and examples\n",
+        "4. 🧪 **Experiment** with the Jupyter notebooks in `notebooks/`\n",
+        "5. ❓ **Get help** from our [Troubleshooting Guide](docs/troubleshooting.md)\n\n"
     ])
     
     # Generate module-by-module documentation
-    readme_content.append("## 📖 Module Details\n\n")
+    readme_content.append("## 📖 Module Overview\n\n")
     
     modules_path = Path('src/modules')
     if modules_path.exists():
-        modules = []
         for item in sorted(modules_path.iterdir()):
             if item.is_dir() and not item.name.startswith('__'):
                 module_info = get_module_info(str(item))
                 module_doc = generate_module_documentation(str(item), module_info)
                 readme_content.append(module_doc)
+    else:
+        readme_content.append("*Modules will appear here as you implement them. Start by creating the first module!*\n\n")
     
     # Add utilities section
     utils_path = os.path.join('src', 'utils')
     if os.path.exists(utils_path):
-        readme_content.append("## 🛠️ Utilities\n\n")
-        readme_content.append("Common utilities used across all chapters:\n\n")
+        readme_content.append("## 🛠️ Utilities & Tools\n\n")
+        readme_content.append("Common utilities and tools used across all modules:\n\n")
         
-        for file in os.listdir(utils_path):
+        for file in sorted(os.listdir(utils_path)):
             if file.endswith('.py') and file != '__init__.py':
                 file_path = os.path.join(utils_path, file)
                 analysis = analyze_python_file(file_path)
@@ -324,34 +371,113 @@ def update_readme():
                     readme_content.append(f"{analysis['module_docstring']}\n\n")
                 
                 if analysis['functions']:
+                    readme_content.append("**Key Functions:**\n")
                     for func in analysis['functions']:
-                        desc = func['docstring'].split('.')[0]
+                        desc = func['docstring'].split('.')[0] if func['docstring'] != 'No description available' else 'No description'
                         readme_content.append(f"- `{func['name']}()`: {desc}\n")
                     readme_content.append("\n")
     
+    # Project structure
+    readme_content.extend([
+        "## 📁 Project Structure\n\n",
+        "```\n",
+        "Build_LLM_From_Scratch/\n",
+        "├── 📁 src/\n",
+        "│   ├── 📁 modules/                    # Core LLM implementation modules\n",
+        "│   │   ├── 📁 01_tokenization/        # Text tokenization methods\n",
+        "│   │   ├── 📁 02_embeddings/          # Word and positional embeddings\n",
+        "│   │   ├── 📁 03_attention/           # Attention mechanisms\n",
+        "│   │   ├── 📁 04_transformer_blocks/  # Transformer architecture\n",
+        "│   │   ├── 📁 05_gpt_model/           # Complete GPT model\n",
+        "│   │   ├── 📁 06_training/            # Training procedures\n",
+        "│   │   ├── 📁 07_inference/           # Text generation\n",
+        "│   │   └── 📁 08_fine_tuning/         # Model fine-tuning\n",
+        "│   └── 📁 utils/                      # Common utilities\n",
+        "├── 📁 examples/                       # Usage examples and demos\n",
+        "├── 📁 notebooks/                      # Interactive Jupyter notebooks\n",
+        "├── 📁 tests/                          # Unit tests\n",
+        "├── 📁 docs/                           # Comprehensive documentation\n",
+        "└── 📁 data/                           # Sample datasets (git-ignored)\n",
+        "```\n\n"
+    ])
+    
+    # Usage examples
+    readme_content.extend([
+        "## 💡 Usage Examples\n\n",
+        "### **Command Line Interface**\n",
+        "```bash\n",
+        "# Quick start demo\n",
+        "python examples/quick_start.py\n\n",
+        "# Train a small model\n",
+        "python examples/train_small_model.py\n\n",
+        "# Generate text\n",
+        "python examples/generate_text.py --prompt \"The future of AI is\"\n\n",
+        "# Use the CLI tool\n",
+        "build-llm train --config configs/small_model.yaml\n",
+        "build-llm generate --prompt \"Hello, world!\" --max-length 50\n",
+        "```\n\n",
+        "### **Python API**\n",
+        "```python\n",
+        "from src.modules.tokenization import SimpleTokenizer\n",
+        "from src.modules.gpt_model import GPTModel\n",
+        "from src.utils import plot_attention_weights\n\n",
+        "# Tokenize text\n",
+        "tokenizer = SimpleTokenizer()\n",
+        "tokens = tokenizer.encode(\"Hello, world!\")\n\n",
+        "# Create and use model\n",
+        "model = GPTModel(vocab_size=10000, d_model=512)\n",
+        "output = model(tokens)\n\n",
+        "# Visualize attention\n",
+        "plot_attention_weights(attention_weights, tokens)\n",
+        "```\n\n"
+    ])
+    
+    # Contributing section
+    readme_content.extend([
+        "## 🤝 Contributing\n\n",
+        "We welcome contributions! This project is designed to be educational and collaborative.\n\n",
+        "### **Ways to Contribute**\n",
+        "- 🐛 **Bug reports** - Found an issue? Let us know!\n",
+        "- 💡 **Feature requests** - Ideas for improvements?\n",
+        "- 📝 **Documentation** - Help make explanations clearer\n",
+        "- 🧪 **Testing** - Add tests for better reliability\n",
+        "- 🎓 **Educational content** - Notebooks, examples, tutorials\n",
+        "- 🔧 **Code improvements** - Optimizations and clean-ups\n\n",
+        "### **Getting Started with Contributing**\n",
+        "1. Read our [Contributing Guidelines](CONTRIBUTING.md)\n",
+        "2. Check out [Good First Issues](https://github.com/alizeeshan-07/Build_LLM_From_Scratch/labels/good%20first%20issue)\n",
+        "3. Fork the repository and create a feature branch\n",
+        "4. Make your changes and add tests if applicable\n",
+        "5. Submit a pull request with a clear description\n\n",
+        "See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.\n\n"
+    ])
+    
     # Footer
     readme_content.extend([
-        "## 📄 Project Structure\n\n",
-        "```\n",
-        "src/\n",
-        "├── modules/\n",
-        "│   ├── 01_tokenization/           # Text tokenization methods\n",
-        "│   ├── 02_embeddings/             # Word and positional embeddings\n",
-        "│   ├── 03_attention/              # Attention mechanisms\n",
-        "│   ├── 04_transformer_blocks/     # Transformer architecture\n",
-        "│   ├── 05_gpt_model/              # Complete GPT model\n",
-        "│   ├── 06_training/               # Training procedures\n",
-        "│   ├── 07_inference/              # Text generation\n",
-        "│   └── 08_fine_tuning/            # Model fine-tuning\n",
-        "└── utils/                         # Common utilities\n",
-        "```\n\n",
-        "## 🤝 Contributing\n\n",
-        "Contributions are welcome! Please feel free to submit a Pull Request. "
-        "Make sure to follow the existing code structure and add appropriate documentation.\n\n",
-        "## 📧 Contact\n\n",
-        "Feel free to reach out if you have questions about the implementation or want to discuss LLM concepts!\n\n",
-        "---\n",
-        "*📝 This README is automatically updated when Python files are modified.*\n"
+        "## 📊 Project Stats\n\n",
+        "- 🐍 **Language**: Python 3.8+\n",
+        "- 🔥 **Framework**: PyTorch 2.0+\n",
+        "- 📦 **Modules**: 8 core learning modules\n",
+        "- 🧪 **Tests**: Comprehensive test coverage\n",
+        "- 📚 **Documentation**: Auto-generated and maintained\n",
+        "- 🤖 **CI/CD**: Automated testing and documentation updates\n\n",
+        "## 🙏 Acknowledgments\n\n",
+        "This project is inspired by:\n",
+        "- 📖 \"Build a Large Language Model (From Scratch)\" book\n",
+        "- 🎓 Stanford CS224N course materials\n",
+        "- 💻 Andrej Karpathy's educational content\n",
+        "- 🤗 Hugging Face's transformer implementations\n",
+        "- 🌟 The broader open-source ML community\n\n",
+        "## 📄 License\n\n",
+        "This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.\n\n",
+        "## 📞 Support & Contact\n\n",
+        "- 💬 **Discussions**: [GitHub Discussions](https://github.com/alizeeshan-07/Build_LLM_From_Scratch/discussions)\n",
+        "- 🐛 **Issues**: [GitHub Issues](https://github.com/alizeeshan-07/Build_LLM_From_Scratch/issues)\n",
+        "- 📧 **Email**: Open an issue for questions\n",
+        "- 📚 **Documentation**: Check our [docs folder](docs/) for detailed guides\n\n",
+        "---\n\n",
+        "**⭐ Star this repository if it helps you learn!**\n\n",
+        "*📝 This README is automatically updated when Python files are modified. Last updated: Auto-generated by GitHub Actions.*\n"
     ])
     
     # Write the README
@@ -360,4 +486,4 @@ def update_readme():
 
 if __name__ == "__main__":
     update_readme()
-    print("✅ README.md updated successfully with LLM project structure!")
+    print("✅ README.md updated successfully with comprehensive LLM project documentation!")
