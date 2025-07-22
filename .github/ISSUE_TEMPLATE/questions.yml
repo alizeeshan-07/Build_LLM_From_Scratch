@@ -1,0 +1,92 @@
+name: ❓ Question/Help
+description: Ask a question or get help with the code
+title: "[QUESTION] "
+labels: ["question", "help-wanted"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question about the code or concepts? We're here to help! 
+        
+        **Before asking**, please check:
+        - 📚 [Learning Path](../docs/learning_path.md)
+        - 🔍 [Existing Issues](../../issues)
+        - 📖 [README](../../README.md)
+
+  - type: textarea
+    id: question
+    attributes:
+      label: ❓ Your Question
+      description: What would you like to know?
+      placeholder: "I don't understand how the attention mechanism works in chapter_03..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: topic
+    attributes:
+      label: 📚 Topic Area
+      description: What topic is your question about?
+      options:
+        - Tokenization Concepts
+        - Embeddings/Vector Representations
+        - Attention Mechanisms
+        - Transformer Architecture
+        - Model Training
+        - Text Generation/Inference
+        - Fine-tuning
+        - Mathematics/Theory
+        - Code Implementation
+        - Project Setup
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: 🔍 Context
+      description: What have you tried? What's confusing you?
+      placeholder: |
+        I've read chapter 3 and tried running the attention example, but I'm confused about:
+        - How the query, key, value matrices are computed
+        - Why we divide by sqrt(d_k)
+        
+        I've tried looking at the code in attention.py but...
+
+  - type: textarea
+    id: code
+    attributes:
+      label: 💻 Relevant Code
+      description: If applicable, share the code you're working with
+      placeholder: |
+        ```python
+        def attention(query, key, value):
+            # This part confuses me
+            scores = torch.matmul(query, key.transpose(-2, -1))
+            # Why divide by sqrt(d_k)?
+        ```
+      render: python
+
+  - type: dropdown
+    id: level
+    attributes:
+      label: 📊 Experience Level
+      description: This helps us tailor our response
+      options:
+        - Beginner (New to ML/Deep Learning)
+        - Intermediate (Some ML experience)
+        - Advanced (Experienced with ML/NLP)
+        - Expert (Professional ML/Research background)
+
+  - type: checkboxes
+    id: help_type
+    attributes:
+      label: 🎯 What kind of help are you looking for?
+      options:
+        - label: Conceptual explanation
+        - label: Code walkthrough
+        - label: Mathematical details
+        - label: Debugging assistance
+        - label: Learning resources/references
+        - label: Implementation suggestions

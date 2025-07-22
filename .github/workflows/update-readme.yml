@@ -3,7 +3,8 @@ name: Update README
 on:
   push:
     paths:
-      - 'src/**/*.py'
+      - 'src/modules/**/*.py'
+      - 'src/utils/**/*.py'
     branches:
       - main
 
