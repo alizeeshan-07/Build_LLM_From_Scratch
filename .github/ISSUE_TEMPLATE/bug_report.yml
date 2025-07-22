@@ -1,0 +1,119 @@
+name: 🐛 Bug Report
+description: Report a bug or unexpected behavior
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the information below to help us understand and fix the issue.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 🐛 Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: "When I run the tokenizer in module 01, I get an unexpected error..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 🔄 Steps to Reproduce
+      description: Tell us how to reproduce this bug
+      placeholder: |
+        1. Go to 'src/modules/01_tokenization/'
+        2. Run command 'python simple_tokenizer.py'
+        3. Input text "Hello world"
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: ✅ Expected Behavior
+      description: What should have happened?
+      placeholder: "The tokenizer should split text into tokens without errors"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: ❌ Actual Behavior
+      description: What actually happened?
+      placeholder: "Got KeyError: 'vocab' exception"
+    validations:
+      required: true
+
+  - type: textarea
+    id: error
+    attributes:
+      label: 📝 Error Message/Traceback
+      description: If applicable, paste the full error message or traceback
+      placeholder: |
+        Traceback (most recent call last):
+          File "simple_tokenizer.py", line 42, in tokenize
+        KeyError: 'vocab'
+      render: python
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: 📚 Which Module?
+      description: Which module/component is affected?
+      options:
+        - Module 1 - Tokenization
+        - Module 2 - Embeddings
+        - Module 3 - Attention
+        - Module 4 - Transformer Blocks
+        - Module 5 - GPT Model
+        - Module 6 - Training
+        - Module 7 - Inference
+        - Module 8 - Fine-tuning
+        - Utils/Common
+        - Documentation
+        - GitHub Actions
+        - Examples
+        - Tests
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: python_version
+    attributes:
+      label: 🐍 Python Version
+      description: What version of Python are you using?
+      placeholder: "3.9.7"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: 💻 Operating System
+      description: What OS are you using?
+      placeholder: "Windows 11, macOS 13.2, Ubuntu 22.04"
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 📦 Package Versions
+      description: Output of `pip list` for relevant packages (torch, numpy, etc.)
+      placeholder: |
+        torch==2.0.1
+        numpy==1.24.3
+        transformers==4.30.2
+      render: text
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: 📄 Additional Context
+      description: Add any other context about the problem here
+      placeholder: "This might be related to the dataset I'm using..."

@@ -6,19 +6,20 @@ body:
   - type: markdown
     attributes:
       value: |
-        Have a question about the code or concepts? We're here to help! 
+        Have a question about the code or LLM concepts? We're here to help! 
         
         **Before asking**, please check:
         - 📚 [Learning Path](../docs/learning_path.md)
         - 🔍 [Existing Issues](../../issues)
         - 📖 [README](../../README.md)
+        - 🔧 [Troubleshooting Guide](../docs/troubleshooting.md)
 
   - type: textarea
     id: question
     attributes:
       label: ❓ Your Question
       description: What would you like to know?
-      placeholder: "I don't understand how the attention mechanism works in chapter_03..."
+      placeholder: "I don't understand how the self-attention mechanism works in module 03. Specifically, I'm confused about..."
     validations:
       required: true
 
@@ -38,6 +39,8 @@ body:
         - Mathematics/Theory
         - Code Implementation
         - Project Setup
+        - Performance/Optimization
+        - Debugging
         - Other
     validations:
       required: true
@@ -48,11 +51,11 @@ body:
       label: 🔍 Context
       description: What have you tried? What's confusing you?
       placeholder: |
-        I've read chapter 3 and tried running the attention example, but I'm confused about:
+        I've read the module 3 documentation and tried running the attention example, but I'm confused about:
         - How the query, key, value matrices are computed
-        - Why we divide by sqrt(d_k)
+        - Why we divide by sqrt(d_k) in the attention calculation
         
-        I've tried looking at the code in attention.py but...
+        I've tried looking at the code in self_attention.py but...
 
   - type: textarea
     id: code
@@ -61,10 +64,11 @@ body:
       description: If applicable, share the code you're working with
       placeholder: |
         ```python
-        def attention(query, key, value):
+        def scaled_dot_product_attention(query, key, value):
             # This part confuses me
             scores = torch.matmul(query, key.transpose(-2, -1))
             # Why divide by sqrt(d_k)?
+            scores = scores / math.sqrt(query.size(-1))
         ```
       render: python
 
@@ -84,9 +88,21 @@ body:
     attributes:
       label: 🎯 What kind of help are you looking for?
       options:
-        - label: Conceptual explanation
-        - label: Code walkthrough
-        - label: Mathematical details
-        - label: Debugging assistance
-        - label: Learning resources/references
-        - label: Implementation suggestions
+        - label: Conceptual explanation (help me understand the theory)
+        - label: Code walkthrough (explain how the implementation works)
+        - label: Mathematical details (show me the math behind it)
+        - label: Debugging assistance (help me fix broken code)
+        - label: Learning resources (point me to good references)
+        - label: Implementation suggestions (how should I approach this?)
+        - label: Best practices (what's the right way to do this?)
+
+  - type: textarea
+    id: attempted_solutions
+    attributes:
+      label: 🔧 What Have You Tried?
+      description: What solutions or approaches have you already attempted?
+      placeholder: |
+        - Tried reading the original Transformer paper
+        - Looked at other implementations online
+        - Asked on Stack Overflow but didn't get clear answers
+        - Tried debugging with print statements

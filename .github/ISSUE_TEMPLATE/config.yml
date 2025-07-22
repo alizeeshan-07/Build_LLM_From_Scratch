@@ -1,0 +1,25 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/alizeeshan-07/Build_LLM_From_Scratch/discussions
+    about: For general discussions about LLM concepts, implementation strategies, and community interaction
+
+  - name: 📚 Learning Path Guide
+    url: https://github.com/alizeeshan-07/Build_LLM_From_Scratch/blob/main/docs/learning_path.md
+    about: Check our comprehensive learning path with step-by-step guidance through all modules
+
+  - name: 🔧 Troubleshooting Guide
+    url: https://github.com/alizeeshan-07/Build_LLM_From_Scratch/blob/main/docs/troubleshooting.md
+    about: Solutions to common setup, implementation, and training issues
+
+  - name: 📖 Resource Collection
+    url: https://github.com/alizeeshan-07/Build_LLM_From_Scratch/blob/main/docs/resources.md
+    about: Curated papers, books, tutorials, and other learning resources
+
+  - name: 🔍 Search Existing Issues
+    url: https://github.com/alizeeshan-07/Build_LLM_From_Scratch/issues
+    about: Search existing issues to see if your question has already been answered
+
+  - name: 📧 Contact Maintainers
+    url: https://github.com/alizeeshan-07/Build_LLM_From_Scratch/discussions/categories/general
+    about: For questions about contributing, project direction, or other non-technical matters

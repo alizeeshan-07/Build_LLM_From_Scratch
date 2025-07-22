@@ -1,0 +1,97 @@
+name: 💡 Feature Request
+description: Suggest a new feature or enhancement
+title: "[FEATURE] "
+labels: ["enhancement", "needs-discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! This helps make the project better for everyone learning about LLMs.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 🎯 Problem Statement
+      description: What problem would this feature solve?
+      placeholder: "I'm always frustrated when trying to visualize attention weights because there's no easy way to..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: 💡 Proposed Solution
+      description: What would you like to see implemented?
+      placeholder: "I'd like to see a function that automatically generates attention heatmaps with customizable colors..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: 📂 Feature Category
+      description: What type of feature is this?
+      options:
+        - New Module/Topic
+        - Code Enhancement
+        - Documentation Improvement
+        - Visualization/Plotting
+        - CLI Tool Enhancement
+        - Testing Infrastructure
+        - GitHub Actions/Automation
+        - Educational Content
+        - Performance Improvement
+        - Utility Function
+        - Example/Demo
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: ⚡ Priority Level
+      description: How important is this feature?
+      options:
+        - Low (Nice to have)
+        - Medium (Would be helpful)
+        - High (Important for learning)
+        - Critical (Blocks learning progress)
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 🔄 Alternative Solutions
+      description: Have you considered any alternative solutions?
+      placeholder: "I considered using matplotlib directly, but it requires too much boilerplate code..."
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: 📋 Examples/References
+      description: Links to papers, other implementations, or examples that inspired this request
+      placeholder: |
+        - Paper: "Attention Is All You Need" - https://arxiv.org/abs/1706.03762
+        - Implementation: https://github.com/example/attention-viz
+        - Tutorial: https://distill.pub/2016/attention/
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: 🛠️ Implementation Ideas
+      description: Any thoughts on how this could be implemented?
+      placeholder: "This could be implemented by adding a new function to visualization.py that takes attention weights and token lists..."
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: 🤝 Contribution
+      description: Are you willing to help implement this feature?
+      options:
+        - label: I'd like to work on implementing this feature
+        - label: I can help with testing the implementation
+        - label: I can help with documentation
+        - label: I can provide feedback during development
+        - label: I can help with code review

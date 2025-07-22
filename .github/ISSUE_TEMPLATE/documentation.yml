@@ -1,0 +1,103 @@
+name: 📝 Documentation Issue
+description: Report missing, unclear, or incorrect documentation
+title: "[DOCS] "
+labels: ["documentation", "good-first-issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help us improve our documentation! Clear, accurate documentation is crucial for learning.
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: 📝 Documentation Issue
+      description: What's wrong with the documentation?
+      placeholder: "The explanation of multi-head attention in module 3 is unclear because it doesn't explain why we need multiple heads..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: 📂 Issue Type
+      description: What type of documentation issue is this?
+      options:
+        - Missing documentation
+        - Incorrect/outdated information
+        - Unclear explanation
+        - Broken links
+        - Formatting issues
+        - Missing examples
+        - Code comments need improvement
+        - Typos/grammar errors
+        - Translation needed
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: 📍 Location
+      description: Where is this documentation issue? (file path, section, line number)
+      placeholder: "src/modules/03_attention/README.md, section 'Multi-Head Attention', line 42"
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_content
+    attributes:
+      label: 📄 Current Content
+      description: What does the documentation currently say? (copy/paste the problematic text)
+      placeholder: |
+        "Multi-head attention allows the model to attend to different parts of the sequence."
+        
+        (This explanation is too brief and doesn't explain WHY or HOW)
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 💡 Suggested Improvement
+      description: How could the documentation be improved?
+      placeholder: |
+        Add a detailed explanation like:
+        "Multi-head attention allows the model to focus on different types of relationships simultaneously. Each head can learn to attend to different aspects (e.g., one head for syntax, another for semantics). This is like having multiple 'specialists' looking at the same sentence from different perspectives..."
+        
+        Also add a diagram showing how multiple attention heads work together.
+
+  - type: dropdown
+    id: audience
+    attributes:
+      label: 🎯 Target Audience
+      description: Who would benefit most from fixing this documentation?
+      options:
+        - Beginners (new to ML/transformers)
+        - Intermediate learners
+        - Advanced practitioners
+        - All levels
+        - Instructors/teachers
+        - Contributors/developers
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: 🤝 Contribution
+      description: Would you like to help fix this?
+      options:
+        - label: I'd like to submit a PR to fix this documentation
+        - label: I can help with review and feedback
+        - label: I can provide additional examples
+        - label: I can help with proofreading
+        - label: I can create diagrams or visualizations
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: 📚 Additional Context
+      description: Any other information that would help improve this documentation?
+      placeholder: |
+        - Links to good examples from other sources
+        - Common misconceptions that should be addressed
+        - Related documentation that also needs updating
+        - Suggestions for visual aids or examples
