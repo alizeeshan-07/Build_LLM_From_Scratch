@@ -5,32 +5,6 @@ This project contains Python modules with automatically generated documentation.
 
 ## File Summaries
 
-### 📄 test2.py
-New Test function for GitHub Actions.
-
-#### Functions:
-
-**`test_function() -> Any`**
-
-Test function for GitHub Actions.
-
-*Returns:* `Any` - No return description
-
----
-
-### 📄 test.py
-*No module description available.*
-
-#### Functions:
-
-**`test_function() -> Any`**
-
-Test function for GitHub Actions.
-
-*Returns:* `Any` - No return description
-
----
-
 ### 📄 example.py
 This module provides mathematical utility functions for basic arithmetic operations.
 It includes functions for addition, multiplication, and advanced calculations with proper type hints.
@@ -83,19 +57,6 @@ Calculate base raised to the power of exponent, with optional modulo operation.
 - **modulo** (`Optional[int]` (default: None)): Optional modulo value for the result
 
 *Returns:* `int` - Result of base^exponent, optionally mod modulo
-
----
-
-### 📄 test3.py
-This module contains a test function to check if given complex numbers have an imaginary part.
-
-#### Functions:
-
-**`test_imaginary_numbers() -> Any`**
-
-No description available
-
-*Returns:* `Any` - No return description
 
 ---
 
