@@ -150,23 +150,12 @@ Provides easy access to common operations.
 - `main()`: Main CLI entry point
 
 ### `data_utils.py`
-Data processing utilities for loading and preprocessing text data.
-
 **Key Functions:**
-- `load_text_data()`: Load text data from a file
+- `load_text_data()`: Load text from file
 - `preprocess_text()`: Basic text preprocessing
-- `create_vocab()`: Create vocabulary from list of texts
-
-### `init.py`
-Utility functions and helpers for the Build LLM project.
 
 ### `metrics.py`
 Evaluation metrics for language models.
-
-**Key Functions:**
-- `calculate_perplexity()`: Calculate perplexity from cross-entropy loss
-- `calculate_accuracy()`: Calculate token-level accuracy
-- `evaluate_model()`: Evaluate model on a dataset
 
 ### `visualization.py`
 Visualization utilities for plotting attention weights, training curves, etc.
