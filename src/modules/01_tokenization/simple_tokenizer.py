@@ -79,29 +79,3 @@ class TextTokenizer:
         text = re.sub(r"\s+([,.:;?!\"()\\'])", r"\1", text)
         return text # type: ignore
 
-
-if __name__ == "__main__":
-    # Example usage with simple vocabulary
-    sample_vocab = {
-        "hello": 0, "world": 1, ",": 2, "!": 3, 
-        "this": 4, "is": 5, "a": 6, "test": 7, "unknown": 8
-    }
-    
-    tokenizer = TextTokenizer(sample_vocab)
-    
-    # Test with sample text
-    test_texts = [
-        "hello, world!",
-        "this is a test",
-        "unknown words here"
-    ]
-    
-    for text in test_texts:
-        ids = tokenizer.encode(text)
-        decoded = tokenizer.decode(ids)
-        
-        print(f"Original: {text}")
-        print(f"Token IDs: {ids}")
-        print(f"Decoded: {decoded}")
-        print(f"Match: {text == decoded}")
-        print("-" * 40)
