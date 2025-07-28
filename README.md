@@ -146,7 +146,13 @@ print(f"Decoded: {decoded_text}")
 ### 📋 Files in this Module:
 
 #### `simple_tokenizer.py`
-Error parsing file: closing parenthesis ']' does not match opening parenthesis '(' (<unknown>, line 79)
+Simple tokenizer implementation using regex-based splitting.
+
+This module implements a basic tokenizer that splits text using regular expressions
+and handles unknown tokens with a fallback strategy.
+
+**Key Classes:**
+- `TextTokenizer`: A simple regex-based tokenizer for text preprocessing
 
 ---
 
