@@ -91,7 +91,111 @@ python examples/quick_start.py
 
 📁 **Location**: `src/modules/01_tokenization/`
 
-*Module files will appear here as you implement them.*
+# Module 1: Tokenization
+
+## 🎯 Learning Objectives
+
+By completing this module, you will understand:
+- How to convert raw text into numerical tokens
+- Different tokenization strategies (word-level, regex-based)
+- Vocabulary building from text corpora
+- Handling unknown words and special tokens
+- Evaluating tokenization quality
+
+## 🔑 Key Concepts
+
+### **Tokenization**
+The process of breaking down text into smaller units (tokens) that can be processed by machine learning models.
+
+### **Vocabulary**
+A mapping between tokens (strings) and unique integer IDs. Forms the foundation for converting text to numbers.
+
+### **Unknown Token Handling**
+Strategy for dealing with words not seen during vocabulary building.
+
+## 📁 Files in This Module
+
+### **Core Implementation**
+- `simple_tokenizer.py` - Main TextTokenizer class with encode/decode methods
+- `build_vocabulary.py` - Tools for downloading text and building vocabularies
+
+### **Testing & Examples**
+- `test.py` - Simple test script to verify tokenizer functionality
+- `utils.py` - Analysis and visualization tools for tokenization
+
+## 🚀 Quick Start
+
+```python
+# Build vocabulary from sample text
+from build_vocabulary import create_full_vocabulary
+vocab = create_full_vocabulary()
+
+# Create tokenizer
+from simple_tokenizer import TextTokenizer
+tokenizer = TextTokenizer(vocab)
+
+# Tokenize text
+text = "Hello, world!"
+token_ids = tokenizer.encode(text)
+decoded_text = tokenizer.decode(token_ids)
+
+print(f"Original: {text}")
+print(f"Token IDs: {token_ids}")
+print(f"Decoded: {decoded_text}")
+
+### 📋 Files in this Module:
+
+#### `simple_tokenizer.py`
+Error parsing file: closing parenthesis ']' does not match opening parenthesis '(' (<unknown>, line 79)
+
+---
+
+#### `test.py`
+Simple test script for TextTokenizer.
+
+This script tests the complete tokenization pipeline:
+1. Download and build vocabulary
+2. Create tokenizer
+3. Test encoding/decoding on various texts
+
+**Key Functions:**
+- `test_basic_functionality()`: Test basic tokenizer encode/decode functionality
+- `test_vocabulary_analysis()`: Test vocabulary analysis utilities
+- `test_tokenization_analysis()`: Test tokenization frequency analysis
+- `main()`: Run all tests
+
+---
+
+#### `utils.py`
+Utilities specific to tokenization module.
+
+This module provides analysis and visualization tools for understanding
+tokenization behavior and vocabulary characteristics.
+
+**Key Functions:**
+- `analyze_vocabulary()`: Analyze and display vocabulary statistics
+- `plot_token_frequencies()`: Plot most frequent tokens
+- `compare_tokenizations()`: Compare two tokenizers side by side
+- `tokenization_statistics()`: Calculate comprehensive tokenization statistics
+
+---
+
+#### `build_vocabulary.py`
+Vocabulary building utilities for tokenization.
+
+This module downloads sample text and creates vocabularies for tokenizer training.
+Based on "The Verdict" text from the LLMs-from-scratch repository.
+
+**Key Functions:**
+- `download_sample_text()`: Download sample text file for vocabulary building
+- `load_and_analyze_text()`: Load text file and display basic statistics
+- `preprocess_text()`: Preprocess text using regex splitting
+- `build_vocabulary()`: Build vocabulary dictionary from tokens
+- `create_full_vocabulary()`: Complete pipeline to create vocabulary from sample text
+- `save_vocabulary()`: Save vocabulary to file for later use
+- `load_vocabulary()`: Load vocabulary from file
+
+---
 
 ## Module 02: Embeddings
 
@@ -142,12 +246,6 @@ Common utilities and tools used across all modules:
 ### `cli.py`
 Command-line interface for the Build LLM project.
 Provides easy access to common operations.
-
-**Key Functions:**
-- `train_model()`: Train a model with specified configuration
-- `generate_text()`: Generate text using a trained model
-- `tokenize_text()`: Tokenize input text and display results
-- `main()`: Main CLI entry point
 
 ### `data_utils.py`
 **Key Functions:**
