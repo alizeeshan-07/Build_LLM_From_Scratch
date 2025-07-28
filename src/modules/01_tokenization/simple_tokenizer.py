@@ -54,7 +54,7 @@ class TextTokenizer:
         
         # Replace unknown tokens
         preprocessed = [
-            item if item in self.str_to_int else "unknown"
+            item if item in self.str_to_int else "<|unk|>"
             for item in preprocessed
         ]
 
@@ -76,7 +76,7 @@ class TextTokenizer:
         text = " ".join([self.int_to_str[i] for i in ids])
         
         # Fix spacing around punctuation
-        text = re.sub(r'\s+([,.:;?!"()\\'])', r'\\1', text)
+        text = re.sub(r"\s+([,.:;?!\"()\\'])", r"\1", text)
         return text # type: ignore
 
 

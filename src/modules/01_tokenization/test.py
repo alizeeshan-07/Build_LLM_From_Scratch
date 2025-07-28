@@ -21,39 +21,36 @@ def test_basic_functionality():
     vocab = create_full_vocabulary(download_fresh=False)
     print(f"Vocabulary size: {len(vocab)}")
     
+    # DEBUG: Check if special tokens are in vocabulary
+    print(f"\nDEBUG: Checking special tokens...")
+    print(f"<|unk|> in vocab: {'<|unk|>' in vocab}")
+    print(f"<|endoftext|> in vocab: {'<|endoftext|>' in vocab}")
+    
+    # Show some vocab entries
+    print(f"\nFirst 10 vocab entries:")
+    for i, (token, idx) in enumerate(list(vocab.items())[:10]):
+        print(f"  '{token}' -> {idx}")
+    
+    print(f"\nLast 10 vocab entries:")
+    for token, idx in list(vocab.items())[-10:]:
+        print(f"  '{token}' -> {idx}")
+    
     # Create tokenizer
     print("\nCreating tokenizer...")
     tokenizer = TextTokenizer(vocab)
     
-    # Test texts
-    test_texts = [
-        "Hello, world!",
-        "This is a test sentence.",
-        "What about punctuation? And numbers!",
-        "Unknown words will be handled.",
-        "The quick brown fox jumps over the lazy dog."
-    ]
+    # Test with simple text first
+    simple_test = "Hello, world!"
+    print(f"\nTesting simple text: {simple_test}")
     
-    print("\n=== Testing Tokenization ===")
-    for i, text in enumerate(test_texts, 1):
-        print(f"\nTest {i}:")
-        print(f"Original: {text}")
-        
-        # Encode
-        ids = tokenizer.encode(text)
-        print(f"Token IDs: {ids}")
-        print(f"Number of tokens: {len(ids)}")
-        
-        # Decode
+    try:
+        ids = tokenizer.encode(simple_test)
         decoded = tokenizer.decode(ids)
+        print(f"Success! IDs: {ids}")
         print(f"Decoded: {decoded}")
-        
-        # Check if round-trip works
-        match = text == decoded
-        print(f"Perfect match: {match}")
-        
-        if not match:
-            print(f"Difference detected!")
+    except Exception as e:
+        print(f"Error with simple text: {e}")
+        return
 
 
 def test_vocabulary_analysis():

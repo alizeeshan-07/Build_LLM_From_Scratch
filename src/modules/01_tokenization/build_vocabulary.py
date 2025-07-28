@@ -82,16 +82,18 @@ def build_vocabulary(tokens: List[str]) -> Dict[str, int]:
     Returns:
         Dictionary mapping tokens to integer IDs
     """
-    # Get unique tokens and sort them
-    all_words = sorted(set(tokens))
-    vocab_size = len(all_words)
+    # Get unique tokens and sort them (following the book)
+    all_tokens = sorted(list(set(tokens)))
     
-    print(f"Vocabulary size: {vocab_size}")
-    print(f"First 10 tokens: {all_words[:10]}")
-    print(f"Last 10 tokens: {all_words[-10:]}")
+    # Add special tokens (following the book exactly)
+    all_tokens.extend(["<|endoftext|>", "<|unk|>"])
     
-    # Create vocabulary mapping
-    vocab = {token: integer for integer, token in enumerate(all_words)}
+    print(f"Vocabulary size (including special tokens): {len(all_tokens)}")
+    print(f"First 10 tokens: {all_tokens[:10]}")
+    print(f"Last 10 tokens: {all_tokens[-10:]}")
+    
+    # Create vocabulary mapping (following the book)
+    vocab = {token: integer for integer, token in enumerate(all_tokens)}
     
     return vocab
 
